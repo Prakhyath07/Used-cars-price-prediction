@@ -1,0 +1,277 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<title>Predict Car Price</title>
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+
+
+{% endblock %}
+
+{% block body %}
+
+<body  onload = "myFunc()">
+
+  <div class="container">
+    <div class="title">Used Cars Price Prediction </div>
+    <div class="content">
+<!--      <form action="/predict" method="POST" >-->
+<!--      <form action= method="POST" >-->
+        <form action="javascript:void(0);" id="frmdata" onsubmit="submitFormData(this)">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Name of Manufacturer:</span>
+            <select name="manufacturer_name" id="manufacturer_name" onchange="myFunc3(this.value)" >
+            <option value="{{manufacturer_name[0]}}" selected>{{manufacturer_name[0]}}</option>
+                {% for manufacturer in manufacturer_name[1:] %}
+             <option value="{{manufacturer}}">{{manufacturer}}</option>
+            {% endfor %}
+            </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Name of Model</span>
+            <select name="model_name" id="model_name">
+            <option value="{{model_name[0]}}" selected>{{model_name[0]}}</option>
+                {% for model in model_name[1:] %}
+             <option value="{{model}}">{{model}}</option>
+            {% endfor %}
+            </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Type of Transmission:</span>
+            <select name="transmission" id="transmission">
+            <option value="automatic">automatic</option>
+             <option value="mechanical">mechanical</option>
+            </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Engine Fuel:</span>
+            <select name="engine_fuel" id="engine_fuel">
+            <option value="{{engine_fuel[0]}}" selected>{{engine_fuel[0]}}</option>
+                {% for fuel in engine_fuel[1:] %}
+             <option value="{{fuel}}">{{fuel}}</option>
+            {% endfor %}
+            </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Feature 1:</span>
+            <select name="feature_1" id="feature_1">
+            <option value="True">True</option>
+             <option value="False">False</option>
+            </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Feature 2:</span>
+            <select name="feature_2" id="feature_2">
+            <option value="True">True</option>
+             <option value="False">False</option>
+            </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Feature 3:</span>
+            <select name="feature_3" id="feature_3">
+            <option value="True">True</option>
+             <option value="False">False</option>
+            </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Feature 4:</span>
+            <select name="feature_4" id="feature_4">
+            <option value="True">True</option>
+             <option value="False">False</option>
+            </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Feature 6:</span>
+            <select name="feature_6" id="feature_6">
+            <option value="True">True</option>
+             <option value="False">False</option>
+            </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Feature 7:</span>
+            <select name="feature_7" id="feature_7">
+            <option value="True">True</option>
+             <option value="False">False</option>
+            </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Feature 8:</span>
+            <select name="feature_8" id="feature_8">
+            <option value="True">True</option>
+             <option value="False">False</option>
+            </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Body Type:</span>
+            <select name="body_type" id="body_type">
+            <option value="{{body_type[0]}}" selected>{{body_type[0]}}</option>
+                {% for body in body_type[1:] %}
+             <option value="{{body}}">{{body}}</option>
+            {% endfor %}
+            </select>
+            </div>
+          <div class="input-box">
+            <span class="details">Drivetrain:</span>
+            <select name="drivetrain" id="drivetrain">
+            <option value="all">all</option>
+             <option value="front">front</option>
+                 <option value="rear">rear</option>
+            </select>
+
+          </div>
+          <div class="input-box">
+            <span class="details">Odometer Value in km</span>
+            <input type="number" name="odometer_value" id="odometer_value" placeholder="odometer_value" step="1">
+          </div>
+          <div class="input-box">
+            <span class="details">Year Produced</span>
+            <input type="number" name="year_produced" id="year_produced" placeholder="year_produced" step="1">
+          </div>
+          <div class="input-box">
+            <span class="details">Engine Capacity in L</span>
+            <input type="number" name="engine_capacity" id="engine_capacity" placeholder="engine_capacity" step="0.01">
+          </div>
+          <div class="input-box">
+            <span class="details">Number of Photos</span>
+            <input type="number" name="number_of_photos" id="number_of_photos" placeholder="number_of_photos" step="1">
+          </div>
+<!--        <div class="gender-details">-->
+<!--          <input type="radio" name="gender" id="dot-1">-->
+<!--          <input type="radio" name="gender" id="dot-2">-->
+<!--          <input type="radio" name="gender" id="dot-3">-->
+<!--          <span class="gender-title">Gender</span>-->
+<!--          <div class="category">-->
+<!--            <label for="dot-1">-->
+<!--            <span class="dot one"></span>-->
+<!--            <span class="gender">Male</span>-->
+<!--          </label>-->
+<!--          <label for="dot-2">-->
+<!--            <span class="dot two"></span>-->
+<!--            <span class="gender">Female</span>-->
+<!--          </label>-->
+<!--          <label for="dot-3">-->
+<!--            <span class="dot three"></span>-->
+<!--            <span class="gender">Prefer not to say</span>-->
+<!--            </label>-->
+<!--          </div>-->
+<!--        </div>-->
+
+        <div class="button">
+          <button class="button" id="button"  >Predict</button>
+<!--          <input type="submit" value="Predict">-->
+        </div>
+<!--          </div>-->
+      </form>
+
+      <div class="res-container  col-md-6 col-xs-12">
+        <div class="result-box">
+        <h6 class="title">Results</h6>
+          <div class="result">
+
+<!--            <img src="" alt="image not available" id="image">-->
+          </div>
+
+        </div>
+      </div>
+ <div class="disp_image">
+
+            <img src="" id="image" alt="my plot" >
+<!--            <img src={{ url}} alt="my plot">&ndash;&gt;-->
+            </div>
+    </div>
+  </div>
+<div id="loading"><div class="loader"></div></div>
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!--&lt;!&ndash;	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>&ndash;&gt;-->
+<!--    <script>-->
+
+<!--        $(document).ready(function(){-->
+
+<!--			$('#loading').hide();-->
+
+<!--			$('.res-container').hide();-->
+<!--			$('.disp_image').hide();-->
+<!--			$("#button").click(function(e){-->
+
+<!--				e.preventDefault();-->
+<!--				$('#loading').show();-->
+
+<!--				var manufacturer_name = $("#manufacturer_name").val();-->
+<!--				var model_name= $("#model_name").val();-->
+<!--				var transmission= $("#transmission").val();-->
+<!--				var odometer_value= $("#odometer_value").val();-->
+<!--				var year_produced= $("#year_produced").val();-->
+<!--				var engine_fuel= $("#engine_fuel").val();-->
+<!--				var engine_capacity= $("#engine_capacity").val();-->
+<!--				var body_type= $("#body_type").val();-->
+<!--				var drivetrain= $("#drivetrain").val();-->
+<!--				var number_of_photos= $("#number_of_photos").val();-->
+<!--				var feature_1= $("#feature_1").val();-->
+<!--				var feature_2= $("#feature_2").val();-->
+<!--				var feature_3= $("#feature_3").val();-->
+<!--				var feature_4= $("#feature_4").val();-->
+<!--				var feature_6= $("#feature_6").val();-->
+<!--				var feature_7= $("#feature_7").val();-->
+<!--				var feature_8= $("#feature_8").val();-->
+<!--				var prediction;-->
+<!--				$.ajax({-->
+<!--					//change url below-->
+<!--					url : "/predict",-->
+<!--&lt;!&ndash;					cache:false,&ndash;&gt;-->
+<!--					async: false,-->
+<!--					type: "POST",-->
+<!--                    beforeSend: function(){-->
+<!--                        $('#loading').show();-->
+<!--                    },-->
+<!--                    complete: function(){-->
+<!--                        setTimeout(function(){-->
+<!--                            $('#loading').hide();-->
+<!--                        },1000);-->
+<!--                    },-->
+<!--					data: {manufacturer_name:manufacturer_name,model_name:model_name,transmission:transmission,odometer_value:odometer_value,year_produced:year_produced,engine_fuel:engine_fuel,engine_capacity:engine_capacity,body_type:body_type,drivetrain:drivetrain,number_of_photos:number_of_photos,feature_1:feature_1,feature_2:feature_2,feature_3:feature_3,feature_4:feature_4,feature_6:feature_6,feature_7:feature_7,feature_8:feature_8},-->
+<!--					success: function(response){-->
+<!--					prediction = response;-->
+<!--						$(".result").html('<p>Price of car is:   <strong> '+ response + ' </strong> Dollars </p>')-->
+<!--						$('.res-container').show();-->
+<!--                        $('.disp_image').show();-->
+<!--                        $('#loading').hide();-->
+
+<!--					}-->
+<!--				});-->
+<!--				$.ajax({-->
+<!--                  type: "GET",-->
+<!--                  url: "/plot.png",-->
+<!--&lt;!&ndash;                  cache:false,&ndash;&gt;-->
+<!--                  async: false,-->
+
+<!--                  data: {'prediction':prediction},-->
+<!--                  success: function (resp) {-->
+<!--&lt;!&ndash;                  $(".result").append('<img src='data:image/png;base64,${resp}  '/>');&ndash;&gt;-->
+
+<!--                  $(".disp_image").html('<pre>' + resp+'</pre>');-->
+<!--&lt;!&ndash;                  $('#loading').hide();&ndash;&gt;-->
+<!--                  $(".result").show();-->
+
+<!--&lt;!&ndash;                  $("#image").attr('src', resp);&ndash;&gt;-->
+
+<!--                 }-->
+<!--              });-->
+
+<!--			});-->
+
+
+<!--		});-->
+
+
+<!--	</script>-->
+<script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+<!--<script>myFunc();</script>-->
+</body>
+{% endblock %}
